@@ -1,0 +1,8 @@
+{
+  "name": "Vantage HR Solution BD",
+  "description": "International HR consulting, policy development, and executive talent acquisition firm based in Bangladesh. Connecting global enterprises with top-tier talent and compliant HR frameworks.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

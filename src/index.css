@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: 'Bebas Neue', 'Anton', sans-serif;
+    --font-sans: 'Poppins', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Light Mode Variables */
+    --color-bg: #f4fbf8;
+    --color-bg-alt: #e9f4ef;
+    --color-surface: #ffffff;
+    --color-surface-hover: #f0f7f4;
+    --color-surface-elevated: #ffffff;
+    --color-border: rgba(27, 77, 67, 0.14);
+    --color-border-subtle: rgba(27, 77, 67, 0.08);
+    --color-text-main: #14284b;
+    --color-text-heading: #0c1b18;
+    --color-text-muted: #49635d;
+    --color-text-faint: #718983;
+    --color-primary: #2fa189;
+    --color-primary-dark: #207764;
+    --color-primary-light: #48baa1;
+    --color-primary-bg: rgba(47, 161, 137, 0.08);
+    --color-forest: #1b4d43;
+    --color-navy: #14284b;
+    --color-grain-opacity: 0.03;
+    --card-shadow: 0 4px 20px -2px rgba(20, 40, 75, 0.06);
+  }
+
+  .dark {
+    /* Dark Mode Variables */
+    --color-bg: #091513;
+    --color-bg-alt: #0d1e1a;
+    --color-surface: #102420;
+    --color-surface-hover: #152f2a;
+    --color-surface-elevated: #183731;
+    --color-border: rgba(47, 161, 137, 0.22);
+    --color-border-subtle: rgba(47, 161, 137, 0.12);
+    --color-text-main: #edf9f5;
+    --color-text-heading: #ffffff;
+    --color-text-muted: #a3c4bd;
+    --color-text-faint: #6c8c85;
+    --color-primary: #2fa189;
+    --color-primary-dark: #227b68;
+    --color-primary-light: #52cbb2;
+    --color-primary-bg: rgba(47, 161, 137, 0.18);
+    --color-forest: #1b4d43;
+    --color-navy: #14284b;
+    --color-grain-opacity: 0.06;
+    --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.45);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-bg);
+    color: var(--color-text-main);
+    transition: background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: 0.04em;
+  }
+}
+
+/* Subtle Film Grain Texture Overlay */
+.grain-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* Starburst rotating ambient animation */
+@keyframes slowSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-slow-spin {
+  animation: slowSpin 35s linear infinite;
+}
+
+/* Wave line floating animation */
+@keyframes waveFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.02);
+  }
+}
+
+.animate-wave-float {
+  animation: waveFloat 9s ease-in-out infinite;
+}
+
+/* Soft glow pulse for hero and teal accents */
+@keyframes tealPulse {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.06);
+  }
+}
+
+.animate-teal-glow {
+  animation: tealPulse 6s ease-in-out infinite;
+}
+
+/* Underline draw animation on hover or entry */
+.animated-underline {
+  position: relative;
+}
+
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 3px;
+  background: #2fa189;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animated-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: 200%;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-marquee {
+    animation: none;
+  }
+}
